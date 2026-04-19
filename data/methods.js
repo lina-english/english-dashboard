@@ -1,0 +1,184 @@
+/* 方法区数据 · 可自由编辑
+ * 修改后刷新页面即可生效，不需要改代码
+ */
+window.METHODS_DATA = {
+  "methods": [
+    {
+      "id": "deverbalization",
+      "title": "脱壳法 · 5 步翻译链路",
+      "subtitle": "Barry's 5-Step Translation Framework",
+      "source": "translation-training",
+      "color": "#0066b3",
+      "intro": "中文到英文不是换词，是换思路。逐步拆掉中文壳、露出 message、再用英文骨架重新组织。",
+      "steps": [
+        {
+          "name": "1. Filtering · 信息过滤",
+          "description": "先问：对方必须知道什么？",
+          "key_points": [
+            "删掉客套、重复、自我中心的背景铺垫",
+            "保留影响对方行动的核心信息",
+            "判断标准：去掉它，核心意思变了吗？不变就删"
+          ]
+        },
+        {
+          "name": "2. Deverbalization · 脱壳",
+          "description": "不看字面，看意思。不被中文措辞绑架。",
+          "key_points": [
+            "每句话先抓住「它到底想说什么」",
+            "四字词、排比、修辞都是壳，先剥掉",
+            "水平越高，需要脱壳的部分越少——在卡住的地方深挖"
+          ]
+        },
+        {
+          "name": "3. 逻辑显化 · Logic Connectors",
+          "description": "把中文里的暗线变成英文里的明线。",
+          "key_points": [
+            "中文常省略因果/转折/递进，英文必须标清楚",
+            "精准选词：and 太弱，however / because / therefore 才够",
+            "读者不应该自己猜两句话之间的关系"
+          ]
+        },
+        {
+          "name": "4. 英文重新表达 · KISS",
+          "description": "用你真正有把握的词，不刻意为难自己。",
+          "key_points": [
+            "KISS ≠ 越短越好，是用你能脱口而出的词",
+            "句子过长就拆，全是短句就用连接词合并",
+            "先改影响理解的错误，小瑕疵先放一放"
+          ]
+        },
+        {
+          "name": "5. 文化适配 · Cultural Fit",
+          "description": "对方的文化怎么接收？",
+          "key_points": [
+            "美式直接 vs 亚洲委婉，根据受众调整",
+            "委婉不等于模糊——保留核心信息，只调语气",
+            "想一想对方读完会产生什么感受、做什么动作"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "speech-structure",
+      "title": "商务演讲结构",
+      "subtitle": "Ramp → Roadmap → PoDs → Dessert",
+      "source": "speech-training",
+      "color": "#d97706",
+      "intro": "受众决定一切。先搞清楚听众是谁、想让他们做什么，再设计结构。",
+      "steps": [
+        {
+          "name": "0. 受众分析 · Audience First",
+          "description": "在想任何内容之前，先把受众搞清楚。",
+          "key_points": [
+            "他们是谁？（岗位、规模、新老）",
+            "他们已经知道什么？不知道什么？",
+            "文化风格？直接 / 委婉 / 正式 / 轻松？"
+          ]
+        },
+        {
+          "name": "1. Ramp · 开头 Hook（7 秒定生死）",
+          "description": "6 种 hook 选一种抓住听众。",
+          "key_points": [
+            "More \"You\" — 直接对听众说你",
+            "Sexy Number — 震撼数据",
+            "Question — 引发思考的问题",
+            "Confession — 自我暴露",
+            "Imagine — 让听众想象场景",
+            "Story — 短故事"
+          ]
+        },
+        {
+          "name": "2. Roadmap · 路线图",
+          "description": "告诉听众接下来会听到什么。一般 3 个点。",
+          "key_points": [
+            "让听众有预期，注意力更集中",
+            "越具体越好，不要太模糊",
+            "3 个点是经典结构，最多不超过 4 个"
+          ]
+        },
+        {
+          "name": "3. PoDs · 分论点 or Executive Summary",
+          "description": "标准结构 3 个 PoD；高管汇报直接亮结论。",
+          "key_points": [
+            "每个 PoD：论点 + 证据（数据/例子/故事）",
+            "高管汇报：结论先行，3 点一次性亮出，等追问再展开",
+            "过渡句把 PoD 串成整体，不是孤立的三段"
+          ]
+        },
+        {
+          "name": "4. Dessert · 收尾",
+          "description": "首尾呼应。跟 Ramp 形成闭环。",
+          "key_points": [
+            "回扣开头的 hook（数字/问题/故事）",
+            "留一个 Call to Action 或余味",
+            "不要用「thank you」草草结束"
+          ]
+        },
+        {
+          "name": "5. Q&A 预判",
+          "description": "你最怕被问什么？提前准备好。",
+          "key_points": [
+            "30 秒答完：核心观点 + 一句理由",
+            "不知道就说「我确认后回复」，不要瞎编",
+            "被带偏时不重复对方措辞，把话拉回你的结构"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pyramid",
+      "title": "金字塔思维",
+      "subtitle": "Pyramid Principle · MECE · Conclusion First",
+      "source": "logic-training",
+      "color": "#059669",
+      "intro": "结论先行，横向互不重叠，纵向层层支撑。让听众 30 秒内抓住你要说什么。",
+      "steps": [
+        {
+          "name": "1. 结论先行 · Conclusion First",
+          "description": "一句话统领全部内容。",
+          "key_points": [
+            "结论要表态——你认为应该怎么做？",
+            "领导听完不会问「所以呢？」",
+            "太大撑不住就缩小范围，不要贪心"
+          ]
+        },
+        {
+          "name": "2. 横向拆解 · MECE",
+          "description": "2-3 个理由支撑结论，互不重叠、完全覆盖。",
+          "key_points": [
+            "Mutually Exclusive：理由之间不交叉",
+            "Collectively Exhaustive：加起来能撑住结论",
+            "超过 3 个太多——哪些可以合并？"
+          ]
+        },
+        {
+          "name": "3. 纵向深挖 · Evidence",
+          "description": "每个理由下面用数据/例子/推导支撑。",
+          "key_points": [
+            "大结论需要强证据——证据和结论要匹配",
+            "一个案例不够，要有普遍数据或多个例子",
+            "证据放对地方——不要放错理由底下"
+          ]
+        },
+        {
+          "name": "4. 排列逻辑 · Order",
+          "description": "顺序本身就是论证。",
+          "key_points": [
+            "时间顺序 / 重要性递进 / 因果链——选一个",
+            "你希望听众先接受哪个点？",
+            "哪个是前提，哪个是推论？"
+          ]
+        },
+        {
+          "name": "5. 对手视角 · Steelman",
+          "description": "如果老板想反驳，他会从哪里下手？",
+          "key_points": [
+            "提前想好薄弱点怎么补",
+            "这个方案执行后会不会引发别的问题？",
+            "有没有反例？能不能排除？"
+          ]
+        }
+      ]
+    }
+  ]
+};

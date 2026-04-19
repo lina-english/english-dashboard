@@ -1,0 +1,80 @@
+{
+  "categories": [
+    {
+      "id": "food-equipment",
+      "name": "食品设备行业 · Food Equipment",
+      "color": "#0066b3",
+      "items": [
+        { "cn": "商用厨房设备", "en": "commercial kitchen equipment", "example": "ITW FEG supplies commercial kitchen equipment to restaurant chains." },
+        { "cn": "烘焙设备", "en": "bakery equipment", "example": "We offer a full line of bakery equipment for industrial use." },
+        { "cn": "烤箱", "en": "oven / combi oven", "example": "The new combi oven supports steam and convection modes." },
+        { "cn": "搅拌机", "en": "mixer / planetary mixer", "example": "This planetary mixer is designed for 60-liter capacity." },
+        { "cn": "切片机", "en": "slicer", "example": "The automatic slicer handles up to 120 loaves per hour." },
+        { "cn": "售后服务", "en": "after-sales service", "example": "Our after-sales service covers installation, training, and maintenance." },
+        { "cn": "备品备件", "en": "spare parts", "example": "Please confirm the spare parts list before shipment." },
+        { "cn": "交付周期", "en": "lead time", "example": "The lead time for this model is 8 to 10 weeks." },
+        { "cn": "调试安装", "en": "installation and commissioning", "example": "Installation and commissioning will be done by our certified engineer." },
+        { "cn": "保修期", "en": "warranty period", "example": "The standard warranty period is 12 months from shipment." },
+        { "cn": "分销商", "en": "distributor", "example": "We're looking for qualified distributors in Southeast Asia." },
+        { "cn": "渠道伙伴", "en": "channel partner", "example": "Our channel partners receive quarterly training." }
+      ]
+    },
+    {
+      "id": "business-email",
+      "name": "商务邮件 · Business Email",
+      "color": "#7c3aed",
+      "items": [
+        { "cn": "跟进", "en": "follow up on", "example": "I'm following up on our discussion last week." },
+        { "cn": "请确认", "en": "please confirm", "example": "Please confirm the delivery date at your earliest convenience." },
+        { "cn": "附件见...", "en": "Please find attached...", "example": "Please find attached the updated quotation." },
+        { "cn": "期待回复", "en": "look forward to hearing from you", "example": "Look forward to hearing from you soon." },
+        { "cn": "尽快", "en": "at your earliest convenience", "example": "Kindly respond at your earliest convenience." },
+        { "cn": "抄送", "en": "cc / loop in", "example": "I've looped in Sarah from the finance team." },
+        { "cn": "需要你的...", "en": "We would need your...", "example": "We would need your approval before proceeding." },
+        { "cn": "恕不另行通知", "en": "without prior notice", "example": "Prices are subject to change without prior notice." },
+        { "cn": "特此致函", "en": "I'm writing to...", "example": "I'm writing to request an updated delivery schedule." },
+        { "cn": "如有问题请联系", "en": "Please reach out if any questions", "example": "Please reach out if you have any questions regarding the proposal." },
+        { "cn": "温馨提示", "en": "kindly note / just a heads up", "example": "Just a heads up — the office will be closed next Monday." },
+        { "cn": "待定", "en": "TBD (to be determined)", "example": "The exact date is still TBD, we'll confirm by Friday." }
+      ]
+    },
+    {
+      "id": "meeting",
+      "name": "会议 · Meeting & Discussion",
+      "color": "#d97706",
+      "items": [
+        { "cn": "安排会议", "en": "schedule a meeting", "example": "Let's schedule a meeting to review the Q2 pipeline." },
+        { "cn": "提上议程", "en": "put it on the agenda", "example": "Let's put this topic on the agenda for next week." },
+        { "cn": "重申一下", "en": "to reiterate / to recap", "example": "To recap, we agreed on three action items." },
+        { "cn": "下一步行动", "en": "next steps / action items", "example": "Let's define the next steps before we close." },
+        { "cn": "保持进度", "en": "keep the momentum", "example": "We need to keep the momentum after this milestone." },
+        { "cn": "关键利益相关方", "en": "key stakeholders", "example": "I'll align with key stakeholders before the next review." },
+        { "cn": "对齐一下", "en": "align on / get aligned", "example": "Let's get aligned on the pricing strategy first." },
+        { "cn": "我来负责", "en": "I'll take ownership of...", "example": "I'll take ownership of the customer escalation." },
+        { "cn": "延期", "en": "postpone / push back", "example": "Let's push back the launch to Q3." },
+        { "cn": "超出预期", "en": "exceed expectations", "example": "The Q1 numbers exceeded our expectations." },
+        { "cn": "风险点", "en": "risk / concern", "example": "One concern I'd like to raise is the supplier dependency." },
+        { "cn": "不在我控制内", "en": "out of my hands", "example": "Honestly, the final approval is out of my hands." }
+      ]
+    },
+    {
+      "id": "sales-management",
+      "name": "销售管理 · Sales Management",
+      "color": "#059669",
+      "items": [
+        { "cn": "销售漏斗", "en": "sales pipeline / funnel", "example": "Our Q2 pipeline looks healthy with 12 active opportunities." },
+        { "cn": "客户画像", "en": "customer profile", "example": "We've refined the customer profile based on last year's data." },
+        { "cn": "开发新客户", "en": "prospect new accounts", "example": "My team is prospecting new accounts in Shenzhen this quarter." },
+        { "cn": "关单", "en": "close the deal", "example": "We're confident we can close the deal by end of month." },
+        { "cn": "报价单", "en": "quotation / quote", "example": "I'll send over the quotation by EOD." },
+        { "cn": "订单确认", "en": "purchase order confirmation", "example": "Please send the PO confirmation so we can start production." },
+        { "cn": "毛利率", "en": "gross margin", "example": "The gross margin on this SKU is around 35%." },
+        { "cn": "回款", "en": "collection / payment collection", "example": "Payment collection from this customer has been stable." },
+        { "cn": "季度目标", "en": "quarterly target", "example": "We hit 108% of our quarterly target in Q1." },
+        { "cn": "团队赋能", "en": "enable the team", "example": "I want to enable the team with better digital tools." },
+        { "cn": "复盘", "en": "retrospective / debrief", "example": "Let's do a debrief after the customer visit tomorrow." },
+        { "cn": "升级处理", "en": "escalate", "example": "I had to escalate this issue to the VP level." }
+      ]
+    }
+  ]
+}

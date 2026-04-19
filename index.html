@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <title>英语学习看板 · English Dashboard</title>
+
+  <!-- ========== PWA / 手机 APP 支持 ========== -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0066b3">
+  <meta name="description" content="Lina 的英语学习看板 · 方法 + 检测 + 进度一站式">
+
+  <!-- iOS Safari 专用：让"加到主屏"后像原生 APP 一样全屏 -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="英语看板">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+
+  <!-- iOS 启动图（避免打开 APP 时白屏闪现） -->
+  <link rel="apple-touch-startup-image" href="icons/splash-1290x2796.png"
+        media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="icons/splash-1179x2556.png"
+        media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="icons/splash-1284x2778.png"
+        media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="icons/splash-1170x2532.png"
+        media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="icons/splash-1242x2688.png"
+        media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="icons/splash-828x1792.png"
+        media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="icons/splash-1125x2436.png"
+        media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="icons/splash-1242x2208.png"
+        media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="icons/splash-750x1334.png"
+        media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+  <link rel="apple-touch-startup-image" href="icons/splash-640x1136.png"
+        media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)">
+
+  <link rel="stylesheet" href="styles.css?v=11">
+</head>
+<body>
+  <header class="top-bar">
+    <div class="brand">
+      <span class="logo">🎯</span>
+      <div class="titles">
+        <h1>英语学习看板</h1>
+        <p class="subtitle">English Dashboard · 方法 + 检测 + 进度 一站式</p>
+      </div>
+    </div>
+    <nav class="nav-links">
+      <a href="#methods">📚 方法</a>
+      <a href="#templates">📖 模板</a>
+      <a href="#fanxing">📥 繁星</a>
+      <a href="#practice">🎤 检测</a>
+      <a href="#progress">📊 进度</a>
+      <button id="pwa-install-btn" class="install-btn" hidden>📲 安装到桌面</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ============== 方法区 ============== -->
+    <section id="methods" class="section">
+      <div class="section-header">
+        <h2>📚 学习方法（Learn）</h2>
+        <p class="section-desc">Barry 线下大课的核心方法论。点击每张卡片展开完整步骤。</p>
+      </div>
+      <div id="methods-container" class="methods-grid">
+        <!-- JS 动态渲染 -->
+      </div>
+    </section>
+
+    <!-- ============== 场景模板区 ============== -->
+    <section id="templates" class="section">
+      <div class="section-header">
+        <h2>📖 场景模板（Templates）</h2>
+        <p class="section-desc">三大商务场景的完整学习材料：结构 + 完整示范 + 核心句型 + 文化 Tips。学完点「生成自测题」让 Claude 出题检测。</p>
+      </div>
+      <div id="templates-container" class="templates-grid">
+        <!-- JS 动态渲染 -->
+      </div>
+    </section>
+
+    <!-- ============== 繁星课堂输入区 ============== -->
+    <section id="fanxing" class="section">
+      <div class="section-header">
+        <h2>📥 繁星课堂 · 今日输入</h2>
+        <p class="section-desc">
+          把每天在小鹅通繁星课堂学到的「句子 / 单词 / 短语」粘到下面,按「保存」后自动生成 4 种练习。
+          格式 <code>中文 | English</code> 最稳,不用严格分区,解析器会自动识别。
+        </p>
+      </div>
+
+      <div class="fanxing-layout">
+        <!-- 左:输入卡片 -->
+        <article class="fanxing-input-card">
+          <div class="fanxing-meta-row">
+            <div class="field">
+              <label>📅 日期</label>
+              <input id="fx-date" type="date" />
+            </div>
+            <div class="field">
+              <label>📝 今天的主题(可选)</label>
+              <input id="fx-title" type="text" placeholder="例如:Day 12 · 会议与排期" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label>📋 粘贴课堂笔记</label>
+            <textarea id="fx-input" rows="12"
+              placeholder="每行格式:中文 | English
+范例:
+## 句子
+- 我需要和客户确认下周交付时间 | I need to confirm the delivery schedule with the client next week.
+## 单词
+- 交付 | delivery
+- 批准 | approval"></textarea>
+          </div>
+
+          <div id="fx-parse-preview" class="fx-parse-preview"></div>
+
+          <div class="actions-row">
+            <button id="fx-save" class="primary-btn">💾 保存今天</button>
+            <button id="fx-export" class="secondary-btn">📤 导出 .md</button>
+            <button id="fx-template" class="ghost-btn">📋 填入示例</button>
+            <button id="fx-clear" class="ghost-btn">清空</button>
+          </div>
+          <div class="tip">
+            💡 数据存在浏览器本地(localStorage),刷新、关 PWA 都不会丢。换设备时点「导出 .md」备份。
+          </div>
+        </article>
+
+        <!-- 右:今日练习卡片 -->
+        <article class="fanxing-practice-card">
+          <div class="fx-day-header">
+            <h3 id="fx-day-title">还没有今天的数据</h3>
+            <div id="fx-day-stats" class="fx-day-stats"></div>
+          </div>
+
+          <div id="fx-history" class="fx-history"></div>
+
+          <div class="fx-practice-buttons">
+            <button class="fx-mode-btn" data-action="open" data-target="fx-translation-panel">
+              <div class="fx-mode-icon">🔄</div>
+              <div class="fx-mode-title">整句翻译</div>
+              <div class="fx-mode-desc">看中文写英文,自评对错</div>
+            </button>
+            <button class="fx-mode-btn" data-action="open" data-target="fx-cloze-panel">
+              <div class="fx-mode-icon">🧩</div>
+              <div class="fx-mode-title">关键词填空</div>
+              <div class="fx-mode-desc">英文句子挖空,填对才算过</div>
+            </button>
+            <button class="fx-mode-btn" data-action="open" data-target="fx-qa-panel">
+              <div class="fx-mode-icon">❓</div>
+              <div class="fx-mode-title">AI 问答</div>
+              <div class="fx-mode-desc">把今天的内容丢给 Claude 出题</div>
+            </button>
+            <button class="fx-mode-btn" data-action="open" data-target="fx-flashcard-panel">
+              <div class="fx-mode-icon">📇</div>
+              <div class="fx-mode-title">单词/短语闪卡</div>
+              <div class="fx-mode-desc">翻面背诵,连对 2 次算掌握</div>
+            </button>
+          </div>
+        </article>
+      </div>
+
+      <!-- ============== 繁星练习面板 1 · 整句翻译 ============== -->
+      <div id="fx-translation-panel" class="tool-panel hidden">
+        <div class="panel-header">
+          <h4>🔄 整句翻译检测</h4>
+          <button class="close-btn" data-action="close">×</button>
+        </div>
+        <div class="panel-body">
+          <div id="fx-trans-empty" class="fx-empty-state hidden">
+            <p>今天还没有句子数据。先在上面粘贴课堂笔记并保存。</p>
+          </div>
+          <div id="fx-trans-body">
+            <div class="fx-progress-bar">
+              <span id="fx-trans-idx">1 / 1</span>
+              <span id="fx-trans-mastery" class="fx-mastery-chip">⚪ 新</span>
+            </div>
+            <div class="field">
+              <label>📝 中文</label>
+              <div id="fx-trans-cn" class="fx-display-cn">—</div>
+            </div>
+            <div class="field">
+              <label>✍️ 写出你的英文</label>
+              <textarea id="fx-trans-input" rows="3" placeholder="写完点「查看答案」对比..."></textarea>
+            </div>
+            <div class="actions-row">
+              <button id="fx-trans-reveal" class="primary-btn">👁 查看答案</button>
+              <button id="fx-trans-speak" class="ghost-btn" title="朗读标准答案">🔊 读</button>
+              <button id="fx-trans-send" class="ghost-btn">🚀 让 Claude 点评</button>
+            </div>
+            <div id="fx-trans-answer" class="fx-answer-box hidden">
+              <label>✅ 参考答案</label>
+              <div id="fx-trans-en" class="fx-display-en">—</div>
+              <div class="actions-row">
+                <button id="fx-trans-correct" class="primary-btn">✅ 写对了</button>
+                <button id="fx-trans-wrong" class="secondary-btn">❌ 差得远</button>
+                <button id="fx-trans-next" class="ghost-btn">下一句 →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============== 繁星练习面板 2 · 填空 ============== -->
+      <div id="fx-cloze-panel" class="tool-panel hidden">
+        <div class="panel-header">
+          <h4>🧩 关键词填空</h4>
+          <button class="close-btn" data-action="close">×</button>
+        </div>
+        <div class="panel-body">
+          <div id="fx-cloze-empty" class="fx-empty-state hidden">
+            <p>今天还没有句子数据。</p>
+          </div>
+          <div id="fx-cloze-body">
+            <div class="fx-progress-bar">
+              <span id="fx-cloze-idx">1 / 1</span>
+              <span id="fx-cloze-mastery" class="fx-mastery-chip">⚪ 新</span>
+            </div>
+            <div class="field">
+              <label>📝 中文提示</label>
+              <div id="fx-cloze-cn" class="fx-display-cn">—</div>
+            </div>
+            <div class="field">
+              <label>🧩 在空格里填关键词</label>
+              <div id="fx-cloze-sentence" class="fx-cloze-sentence">—</div>
+            </div>
+            <div class="actions-row">
+              <button id="fx-cloze-check" class="primary-btn">✅ 检查</button>
+              <button id="fx-cloze-reveal" class="secondary-btn">👁 直接看答案</button>
+              <button id="fx-cloze-speak" class="ghost-btn" title="朗读完整句">🔊</button>
+              <button id="fx-cloze-next" class="ghost-btn">下一题 →</button>
+            </div>
+            <div id="fx-cloze-result" class="fx-result-box hidden"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============== 繁星练习面板 3 · AI 问答 ============== -->
+      <div id="fx-qa-panel" class="tool-panel hidden">
+        <div class="panel-header">
+          <h4>❓ AI 问答(基于今天的内容)</h4>
+          <button class="close-btn" data-action="close">×</button>
+        </div>
+        <div class="panel-body">
+          <div id="fx-qa-empty" class="fx-empty-state hidden">
+            <p>今天还没有任何数据。</p>
+          </div>
+          <div id="fx-qa-body">
+            <div class="field">
+              <label>🎯 选一种出题方式</label>
+              <select id="fx-qa-style">
+                <option value="random">🎲 综合出题(翻译 + 造句 + 换说法)</option>
+                <option value="translation">🔄 全部中译英</option>
+                <option value="create">✍️ 用今天的词造 5 个新句子</option>
+                <option value="scenario">🏢 丢到真实业务场景里练(ITW 销售)</option>
+                <option value="weak">⚠️ 只针对我标"没记住"的</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>📊 题量</label>
+              <select id="fx-qa-count">
+                <option value="5">5 题</option>
+                <option value="10" selected>10 题</option>
+                <option value="all">全部今天的内容</option>
+              </select>
+            </div>
+            <div class="actions-row">
+              <button id="fx-qa-send" class="primary-btn">🚀 让 Claude 出题</button>
+            </div>
+            <div class="tip">
+              💡 点完会自动开 Claude 网页版,已经把今天的句子/单词/短语填进 prompt 了。
+              iPhone 和电脑都能用。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============== 繁星练习面板 4 · 单词闪卡 ============== -->
+      <div id="fx-flashcard-panel" class="tool-panel hidden">
+        <div class="panel-header">
+          <h4>📇 单词 / 短语闪卡</h4>
+          <button class="close-btn" data-action="close">×</button>
+        </div>
+        <div class="panel-body">
+          <div id="fx-fc-empty" class="fx-empty-state hidden">
+            <p>今天还没有单词 / 短语数据。</p>
+          </div>
+          <div id="fx-fc-body">
+            <div class="fx-progress-bar">
+              <span id="fx-fc-idx">1 / 1</span>
+              <span id="fx-fc-mastery" class="fx-mastery-chip">⚪ 新</span>
+            </div>
+            <div id="fx-fc-card" class="flashcard">
+              <div class="card-face card-front">
+                <div class="card-label">中文</div>
+                <div class="card-content" id="fx-fc-cn">—</div>
+                <div class="card-hint">点击卡片翻面 ↻</div>
+              </div>
+              <div class="card-face card-back">
+                <div class="card-label">English</div>
+                <div class="card-content" id="fx-fc-en">—</div>
+                <div class="speak-row">
+                  <button id="fx-fc-speak" class="speak-btn" title="朗读">🔊</button>
+                  <button id="fx-fc-speak-slow" class="speak-btn" title="慢速朗读">🐢</button>
+                </div>
+              </div>
+            </div>
+            <div class="flashcard-controls">
+              <button id="fx-fc-prev" class="ghost-btn">← 上一张</button>
+              <button id="fx-fc-wrong" class="secondary-btn">❌ 没记住</button>
+              <button id="fx-fc-correct" class="primary-btn">✅ 记住了</button>
+              <button id="fx-fc-next" class="ghost-btn">下一张 →</button>
+            </div>
+            <div class="tip">💡 连续答对 2 次算"已掌握",下次默认不再抽到。</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== 检测区 ============== -->
+    <section id="practice" class="section">
+      <div class="section-header">
+        <h2>🎤 练习检测（Practice）</h2>
+        <p class="section-desc">五个训练模块。点「🚀 开始练习」会自动打开 Claude 网页版，预填好题目，直接对话。</p>
+      </div>
+
+      <div class="tool-grid">
+        <!-- 1. 录音检测 -->
+        <article class="tool-card" data-tool="recording">
+          <div class="tool-icon">🎙️</div>
+          <h3>录音检测</h3>
+          <p class="tool-desc">点麦克风说英语，浏览器实时转文字。一键发给 Claude 拿地道度反馈。</p>
+          <button class="tool-btn" data-action="open" data-target="recording-panel">开始练习 →</button>
+
+          <div id="recording-panel" class="tool-panel hidden">
+            <div class="panel-header">
+              <h4>录音检测 · Speech Practice</h4>
+              <button class="close-btn" data-action="close">×</button>
+            </div>
+            <div class="panel-body">
+              <div class="recording-controls">
+                <button id="rec-start" class="primary-btn">🎙️ 开始录音</button>
+                <button id="rec-stop" class="secondary-btn" disabled>⏹ 停止</button>
+                <span id="rec-status" class="status-indicator">未启动</span>
+              </div>
+              <div class="field">
+                <label>🎯 你想练什么场景？（给 Claude 反馈做参考）</label>
+                <input id="rec-context" type="text" placeholder="例如：跟外国客户介绍新产品、开季度汇报会、客户投诉处理…" />
+              </div>
+              <div class="field">
+                <label>📝 实时转写结果</label>
+                <div id="rec-transcript" class="transcript-box" contenteditable="true" data-placeholder="这里会显示你说的英文……你也可以手动编辑"></div>
+              </div>
+              <div class="actions-row">
+                <button id="rec-copy-prompt" class="primary-btn">🚀 让 Claude 给我反馈</button>
+                <button id="rec-clear" class="ghost-btn">清空</button>
+              </div>
+              <div class="tip">
+                💡 <b>浏览器兼容：</b>Chrome / Edge 最佳。Firefox 暂不支持 Web Speech API。
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. 翻译检测 -->
+        <article class="tool-card" data-tool="translation">
+          <div class="tool-icon">🔄</div>
+          <h3>翻译检测</h3>
+          <p class="tool-desc">粘贴中文，Claude 用脱壳法 5 步拆给你看。支持教练/快速两种模式。</p>
+          <button class="tool-btn" data-action="open" data-target="translation-panel">开始练习 →</button>
+
+          <div id="translation-panel" class="tool-panel hidden">
+            <div class="panel-header">
+              <h4>翻译检测 · Translation Practice</h4>
+              <button class="close-btn" data-action="close">×</button>
+            </div>
+            <div class="panel-body">
+              <div class="field">
+                <label>📝 要翻译的中文</label>
+                <textarea id="trans-source" rows="5" placeholder="粘贴你需要翻译的中文..."></textarea>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label>🎯 给谁看/听</label>
+                  <select id="trans-audience">
+                    <option value="客户">客户</option>
+                    <option value="上级">上级/老板</option>
+                    <option value="跨部门同事">跨部门同事</option>
+                    <option value="外部合作方">外部合作方</option>
+                    <option value="全员">全体员工</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>📊 你的英语水平</label>
+                  <select id="trans-level">
+                    <option value="B1 中等">B1 中等</option>
+                    <option value="B2 中高" selected>B2 中高</option>
+                    <option value="C1 高级">C1 高级</option>
+                    <option value="A2 基础">A2 基础</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>🎓 模式</label>
+                  <select id="trans-mode">
+                    <option value="快速">快速（直接出翻译+解释）</option>
+                    <option value="教练">教练（带我一步步走）</option>
+                  </select>
+                </div>
+              </div>
+              <div class="actions-row">
+                <button class="primary-btn" data-copy="translation">🚀 开始练习</button>
+                <button class="ghost-btn" data-clear="translation">清空</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. 邮件润色 -->
+        <article class="tool-card" data-tool="email">
+          <div class="tool-icon">✉️</div>
+          <h3>邮件润色</h3>
+          <p class="tool-desc">粘贴中文/半成品英文，Claude 改写成地道商务邮件 + 解释改动。</p>
+          <button class="tool-btn" data-action="open" data-target="email-panel">开始练习 →</button>
+
+          <div id="email-panel" class="tool-panel hidden">
+            <div class="panel-header">
+              <h4>邮件润色 · Email Polishing</h4>
+              <button class="close-btn" data-action="close">×</button>
+            </div>
+            <div class="panel-body">
+              <div class="field">
+                <label>📨 原邮件（中文或半成品英文）</label>
+                <textarea id="email-source" rows="7" placeholder="例如：Hi John,&#10;I want to confirm our meeting next week.&#10;Please let me know..."></textarea>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label>🎯 目的</label>
+                  <select id="email-purpose">
+                    <option value="跟进/push 进度">跟进 / push 进度</option>
+                    <option value="客户询价或报价">客户询价 / 报价</option>
+                    <option value="交付确认">交付确认</option>
+                    <option value="请求信息">请求信息</option>
+                    <option value="道歉 / 解释">道歉 / 解释</option>
+                    <option value="推广 / 市场">推广 / 市场邮件</option>
+                    <option value="拒绝 / 婉拒">拒绝 / 婉拒</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>🤝 关系</label>
+                  <select id="email-tone">
+                    <option value="正式 - 新客户">正式 - 新客户</option>
+                    <option value="商务 - 熟悉的客户">商务 - 熟悉客户</option>
+                    <option value="轻松 - 内部同事">轻松 - 内部同事</option>
+                    <option value="严肃 - 高层 / VIP">严肃 - 高层 / VIP</option>
+                  </select>
+                </div>
+              </div>
+              <div class="actions-row">
+                <button class="primary-btn" data-copy="email">🚀 开始练习</button>
+                <button class="ghost-btn" data-clear="email">清空</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. 演讲稿 -->
+        <article class="tool-card" data-tool="speech">
+          <div class="tool-icon">🎤</div>
+          <h3>商务演讲稿</h3>
+          <p class="tool-desc">给出主题和受众，Claude 按 Ramp→Roadmap→PoDs→Dessert 搭完整稿子。</p>
+          <button class="tool-btn" data-action="open" data-target="speech-panel">开始练习 →</button>
+
+          <div id="speech-panel" class="tool-panel hidden">
+            <div class="panel-header">
+              <h4>演讲稿准备 · Speech Preparation</h4>
+              <button class="close-btn" data-action="close">×</button>
+            </div>
+            <div class="panel-body">
+              <div class="field">
+                <label>🎯 演讲主题</label>
+                <input id="speech-topic" type="text" placeholder="例如：Q2 销售复盘 + Q3 策略 / 新产品向客户介绍 / 跨部门推动方案…" />
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label>👥 听众是谁</label>
+                  <input id="speech-audience" type="text" placeholder="例如：6 位亚太区高管 / 30 位销售同事 / 客户采购团队…" />
+                </div>
+                <div class="field">
+                  <label>⏱ 时长</label>
+                  <select id="speech-duration">
+                    <option value="5 分钟">5 分钟</option>
+                    <option value="10 分钟" selected>10 分钟</option>
+                    <option value="15 分钟">15 分钟</option>
+                    <option value="20 分钟">20 分钟</option>
+                    <option value="30 分钟">30 分钟</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>📊 结构</label>
+                  <select id="speech-structure">
+                    <option value="标准结构">标准（PoD1-2-3）</option>
+                    <option value="高管汇报结构">高管汇报（结论先行）</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field">
+                <label>📝 已有素材/要点（可选，越详细产出越精准）</label>
+                <textarea id="speech-material" rows="4" placeholder="例如：完成 108% 目标、拿下 3 个新客户、团队下半年要冲 20% 增长…"></textarea>
+              </div>
+              <div class="actions-row">
+                <button class="primary-btn" data-copy="speech">🚀 开始练习</button>
+                <button class="ghost-btn" data-clear="speech">清空</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5. 术语卡片 -->
+        <article class="tool-card" data-tool="vocab">
+          <div class="tool-icon">📇</div>
+          <h3>商务英语学习</h3>
+          <p class="tool-desc">9 大分类 · 123 条商务词汇（行业 / 邮件 / 会议 / 销售 / 谈判 / 财务 / 项目 / 高频动词 / 套话）。三模式：🃏 背诵 / 📚 参考 / 🔄 复习。</p>
+          <button class="tool-btn" data-action="open" data-target="vocab-panel">开始学习 →</button>
+
+          <div id="vocab-panel" class="tool-panel hidden">
+            <div class="panel-header">
+              <h4>商务英语学习 · Business English Vocab</h4>
+              <button class="close-btn" data-action="close">×</button>
+            </div>
+            <div class="panel-body">
+              <!-- ===== 三模式切换 ===== -->
+              <div class="vocab-modes">
+                <button class="mode-btn active" data-mode="flashcard">🃏 词卡背诵</button>
+                <button class="mode-btn" data-mode="glossary">📚 词汇表</button>
+                <button class="mode-btn" data-mode="review">🔄 复习队列</button>
+              </div>
+
+              <!-- ===== 模式 A · 词卡背诵（翻面 + 标记） ===== -->
+              <div id="vocab-view-flashcard" class="vocab-view">
+                <div class="field">
+                  <label>📂 选择分类</label>
+                  <div id="vocab-category-tabs" class="category-tabs"></div>
+                </div>
+                <div class="flashcard-area">
+                  <div id="flashcard" class="flashcard">
+                    <div class="card-face card-front">
+                      <div class="card-label">中文</div>
+                      <div class="card-content" id="card-cn">选一个分类开始</div>
+                      <div class="card-hint">点击卡片翻面 ↻</div>
+                    </div>
+                    <div class="card-face card-back">
+                      <div class="card-label">English</div>
+                      <div class="card-content" id="card-en"></div>
+                      <div class="speak-row">
+                        <button id="speak-word" class="speak-btn" title="正常速度朗读">🔊</button>
+                        <button id="speak-word-slow" class="speak-btn" title="慢速朗读">🐢</button>
+                        <button id="speak-example" class="speak-btn speak-btn-sm" title="朗读例句">📖 Example</button>
+                      </div>
+                      <div class="card-example" id="card-example"></div>
+                    </div>
+                  </div>
+                  <div class="flashcard-progress" id="card-progress"></div>
+                  <div class="flashcard-controls">
+                    <button id="card-prev" class="ghost-btn">← 上一张</button>
+                    <button id="card-forget" class="secondary-btn">❌ 没记住</button>
+                    <button id="card-remember" class="primary-btn">✅ 记住了</button>
+                    <button id="card-next" class="ghost-btn">下一张 →</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ===== 模式 B · 词汇表（参考/搜索） ===== -->
+              <div id="vocab-view-glossary" class="vocab-view hidden">
+                <div class="glossary-search-row">
+                  <input type="search" id="vocab-search" placeholder="🔍 搜索中文或英文…例如：align / 对齐 / escalate"
+                         autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+                  <button id="vocab-search-clear" class="ghost-btn" title="清除搜索">×</button>
+                </div>
+                <div id="vocab-glossary-stats" class="glossary-stats"></div>
+                <div id="vocab-glossary-content" class="glossary-content"></div>
+              </div>
+
+              <!-- ===== 模式 C · 复习队列（智能浮出"该复习的") ===== -->
+              <div id="vocab-view-review" class="vocab-view hidden">
+                <div id="vocab-review-summary" class="review-summary"></div>
+                <div id="vocab-review-content" class="review-content"></div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============== 进度区 ============== -->
+    <section id="progress" class="section">
+      <div class="section-header">
+        <h2>📊 今日进度（Progress）</h2>
+        <p class="section-desc">本地存储，刷新也保留。每天自动归零新一天。</p>
+      </div>
+      <div class="stats-grid" id="stats-grid">
+        <!-- JS 动态渲染 -->
+      </div>
+      <div class="stats-actions">
+        <button id="reset-stats" class="ghost-btn">重置今日记录</button>
+        <button id="reset-vocab" class="ghost-btn">重置单词进度</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Toast 提示 -->
+  <div id="toast" class="toast"></div>
+
+  <footer class="bottom-bar">
+    <p>基于 Barry 线下大课方法论 · translation-training / speech-training / logic-training</p>
+    <p>点「🚀 开始练习」会自动跳转到 Claude 网页版（手机/电脑都可用）</p>
+  </footer>
+
+  <script src="data/methods.js?v=9"></script>
+  <script src="data/vocab.js?v=9"></script>
+  <script src="data/templates.js?v=9"></script>
+  <script src="app.js?v=9"></script>
+
+  <!-- ========== Service Worker 注册：让 PWA 能离线用 ========== -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker
+          .register('sw.js')
+          .then((reg) => console.log('[PWA] Service Worker 已注册，scope:', reg.scope))
+          .catch((err) => console.warn('[PWA] Service Worker 注册失败（不影响网页使用）:', err));
+      });
+    }
+
+    // "安装到主屏"按钮（Android Chrome 支持）
+    let deferredPrompt = null;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const btn = document.getElementById('pwa-install-btn');
+      if (btn) btn.hidden = false;
+    });
+    window.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('pwa-install-btn');
+      if (!btn) return;
+      btn.addEventListener('click', async () => {
+        if (!deferredPrompt) return;
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        console.log('[PWA] 安装结果:', outcome);
+        deferredPrompt = null;
+        btn.hidden = true;
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>繁星抓取</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <h1>📥 繁星课堂 → 英语看板</h1>
+    <p class="tagline">抓取当前页面的中英对照,一键送到看板</p>
+  </header>
+
+  <section id="capture-section">
+    <button id="scrape-btn" class="primary">🔍 抓取当前页面</button>
+    <div id="scrape-hint" class="hint">打开小鹅通繁星课页面后点这里。Chrome 会弹权限询问。</div>
+  </section>
+
+  <section id="result-section" class="hidden">
+    <div class="stats-row">
+      <span id="stat-count" class="stat">0 条</span>
+      <span id="stat-cn" class="stat stat-cn">中 0</span>
+      <span id="stat-en" class="stat stat-en">英 0</span>
+      <span id="stat-pairs" class="stat stat-pair">配对 0</span>
+    </div>
+
+    <div class="field">
+      <label>📝 页面标题</label>
+      <div id="page-title" class="display">—</div>
+    </div>
+
+    <details id="preview-details" open>
+      <summary>👁 预览抓到的内容(前 10 条)</summary>
+      <div id="preview-list" class="preview-list"></div>
+    </details>
+
+    <details id="raw-details">
+      <summary>🔧 调试:看所有候选文本</summary>
+      <pre id="raw-dump" class="raw-dump"></pre>
+    </details>
+
+    <div class="actions">
+      <button id="import-btn" class="primary">🚀 一键导入看板</button>
+      <button id="copy-btn" class="secondary">📋 仅复制</button>
+      <button id="download-btn" class="ghost">📤 导出 .md</button>
+    </div>
+
+    <div class="field">
+      <label>🔗 看板地址(可改)</label>
+      <input id="dashboard-url" type="url" />
+      <div class="tip">默认本地文件。如果你用 python 跑服务器,改成 <code>http://localhost:8765/</code></div>
+    </div>
+  </section>
+
+  <section id="empty-section" class="hidden">
+    <div class="empty">
+      <div class="empty-icon">🤷</div>
+      <h3>没抓到配对内容</h3>
+      <p>这个页面可能没有明显的"中文 + 英文"对照,或者繁星的 DOM 结构需要我针对性适配。</p>
+      <p>把页面 URL 发给你的 Claude,说「这个繁星页抓不出,看看 HTML 怎么改规则」。</p>
+      <button id="retry-btn" class="secondary">🔄 换个页面试试</button>
+      <button id="copy-raw-btn" class="ghost">📋 复制所有页面文字(给 Claude 用)</button>
+    </div>
+  </section>
+
+  <footer>
+    <small>
+      <a id="open-dashboard" href="#">🏠 只打开看板</a>
+      <span>·</span>
+      <a id="settings" href="#">⚙️ 重置</a>
+    </small>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>

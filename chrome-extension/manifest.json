@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "繁星课堂 → 英语看板",
+  "short_name": "繁星抓取",
+  "description": "一键把小鹅通繁星课程页面的中英对照抓到本地英语看板,作者 Lina 自用",
+  "version": "1.0.0",
+  "permissions": ["activeTab", "scripting", "clipboardWrite", "storage"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "抓取当前课程页面"
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  }
+}
