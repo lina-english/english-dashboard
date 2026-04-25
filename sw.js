@@ -3,10 +3,11 @@
  * 更新内容时记得把 CACHE_NAME 的版本号往上加一。
  */
 
-const CACHE_NAME = 'english-dashboard-v10';
+const CACHE_NAME = 'english-dashboard-v19';
 const URLS_TO_CACHE = [
   './',
   './index.html',
+  './fanxing-calendar.html',
   './styles.css',
   './app.js',
   './data/methods.js',

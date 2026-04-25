@@ -1,8 +1,8 @@
 {
-  "name": "英语学习看板 · English Dashboard",
-  "short_name": "英语看板",
-  "description": "Lina 的英语学习中心 · 方法 + 检测 + 进度一站式",
-  "start_url": "./index.html",
+  "name": "繁星日历 · 每日英语",
+  "short_name": "繁星日历",
+  "description": "每日朗读 / 跟读 / 听力 / 词汇 / 翻译 / 听写 一站式英语学习",
+  "start_url": "./fanxing-calendar.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
