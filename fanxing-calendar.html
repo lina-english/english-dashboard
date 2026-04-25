@@ -96,10 +96,14 @@ header h1{font-size:18px;flex:1}
 /* Ordering */
 .ordering-area{min-height:60px;border:2px dashed #cbd5e1;border-radius:10px;padding:8px;margin-bottom:10px;display:flex;flex-wrap:wrap;gap:6px}
 .ordering-area.has-items{border-color:#1a56db;background:#f8faff}
-.order-chip{background:#1a56db;color:#fff;padding:8px 12px;border-radius:8px;font-size:14px;cursor:pointer;user-select:none;line-height:1.4}
+.order-chip{background:#1a56db;color:#fff;padding:8px 12px;border-radius:8px;font-size:14px;cursor:pointer;user-select:none;line-height:1.4;display:flex;align-items:flex-start;gap:6px}
 .order-chip.source{background:#e8eeff;color:#1a56db}
 .order-chip.correct{background:#22c55e}
 .order-chip.wrong{background:#ef4444}
+.order-chip-text{flex:1}
+.chip-play{background:none;border:none;cursor:pointer;font-size:13px;padding:0;line-height:1;flex-shrink:0;opacity:0.75}
+.chip-play:hover{opacity:1}
+.vocab-card .ex{font-size:11px;color:#94a3b8;margin-top:3px;font-style:italic;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .order-result{padding:12px;border-radius:10px;margin-top:10px;font-size:14px;font-weight:600;text-align:center}
 .order-result.correct{background:#dcfce7;color:#166534}
 .order-result.wrong{background:#fee2e2;color:#991b1b}
@@ -242,6 +246,7 @@ textarea.answer-box:focus{border-color:#1a56db}
       <div class="btn-row">
         <button class="btn btn-primary" id="check-order-btn">检查答案</button>
         <button class="btn btn-outline" id="reset-order-btn">重置</button>
+        <button class="btn btn-outline" id="speak-order-btn" onclick="speakOrderCorrect()">🔊 朗读正确段落</button>
       </div>
       <div id="order-result"></div>
     </div>
@@ -2462,7 +2467,7 @@ const DAYS = [
         {en:"A wrap-up is especially important in decision-making or brainstorming meetings where outcomes need to be captured.",zh:"在需要记录成果的决策类或头脑风暴类会议中，收尾环节尤为重要。"},
         {en:"End every meeting with a quick check-in: ask if anyone has questions or if anything was missed.",zh:"每次会议结束时做一个快速确认：问是否有人有疑问，或者是否遗漏了什么。"}
       ]},
-    vocab:[{en:"wrap up",zh:"结束；收尾"},{en:"takeaway",zh:"收获；要点"},{en:"assign",zh:"分配；指派"},{en:"sign off",zh:"结束；散会；签退"},{en:"action item",zh:"行动事项；待办"}],
+    vocab:[{en:"wrap up",zh:"结束；收尾",ex:"Let's wrap up in five minutes."},{en:"takeaway",zh:"收获；要点",ex:"What's your key takeaway from today?"},{en:"assign",zh:"分配；指派",ex:"We assigned each task to a team member."},{en:"sign off",zh:"结束；散会；签退",ex:"Before we sign off, any final questions?"},{en:"action item",zh:"行动事项；待办",ex:"I'll send the action items by end of day."},{en:"follow-up",zh:"后续跟进",ex:"I'll send a follow-up email to confirm."},{en:"recap",zh:"回顾；总结",ex:"Let me quickly recap what we decided."}],
     translation:{zh:"一个有效的会议收尾环节通常只需要一两分钟，但能让团队带着明确的目标和清晰的分工离开会议室。",en:"An effective meeting wrap-up usually takes only one or two minutes, but it allows the team to leave the room with clear goals and a defined division of responsibilities."},
     listening:{original:"One quick summary, quickly recap the major decision or theme that came up in the meeting. This may not be needed when you're having a one-on-one meeting, but it's especially important when you are having a decision-making or a brainstorming meeting. Two, next steps, state what everyone's next steps are. What are those action items? And be sure to even add a deadline for added clarity. Step three, the check-in. If you have 20 seconds left, ask, have I missed anything? Any final thoughts on this topic?",text:"One quick summary, quickly [BLANK] the major decision or [BLANK] that came up in the meeting. This is especially important when you are having a [BLANK] or a [BLANK] meeting. What are those [BLANK] items? And be sure to add a [BLANK] for added [BLANK]. Step three, the [BLANK]. If you have 20 seconds left, ask, have I missed anything?",blanks:["recap","theme","decision-making","brainstorming","action","deadline","clarity","check-in"]},
     dictation:"Follow this formula to bring real closure: recap key decisions, assign action items with deadlines, and do a final check-in to make sure everyone leaves successfully aligned.",
@@ -2476,7 +2481,7 @@ const DAYS = [
         {en:"The ability to process a question and structure an answer with confidence is a skill in itself.",zh:"能够自信地消化问题并组织答案，本身就是一种技能。"},
         {en:"She always left ten minutes for a Q&A at the end of every important meeting to clarify any concerns on the spot.",zh:"她总是在每次重要会议结束时留出十分钟进行问答，让大家当场澄清疑虑。"}
       ]},
-    vocab:[{en:"Q&A",zh:"问答环节"},{en:"product launch",zh:"产品发布"},{en:"anticipate",zh:"预期；预判"},{en:"on the spot",zh:"当场；立刻"},{en:"confidence",zh:"自信"}],
+    vocab:[{en:"Q&A",zh:"问答环节",ex:"We'll have a Q&A session at the end."},{en:"product launch",zh:"产品发布",ex:"The product launch exceeded our expectations."},{en:"anticipate",zh:"预期；预判",ex:"Anticipate tough questions and prepare answers."},{en:"on the spot",zh:"当场；立刻",ex:"She had to answer the question on the spot."},{en:"confidence",zh:"自信",ex:"Speaking with confidence makes a big difference."},{en:"impromptu",zh:"即兴；临时",ex:"He gave an impromptu answer without any notes."},{en:"handle",zh:"处理；应对",ex:"How you handle difficult questions matters a lot."}],
     translation:{zh:"在每次重要会议结束后，她都会留十分钟做 Q&A，让团队把疑问当场澄清。",en:"After every important meeting, she would leave ten minutes for a Q&A to let the team clarify any questions on the spot."},
     listening:{original:"Learning how to get good at speaking impromptu, it requires many different skills being trained. One, you have to learn how to speak on the spot and deal with the anxiety that does come up from that. You have to learn how to manage those nerves. Two, you have to know your content. And three, you're also going to get questions where you actually need to learn how to have the confidence to take a moment to give yourself time to process the thoughts, structure the answer, and then answer. But that's a skill in itself too. The ability to just pause, maybe even take out a pen and write some ideas down, the confidence it takes to even do that part takes time to develop.",text:"Learning how to get good at speaking [BLANK], it requires many different skills. One, you have to learn how to speak [BLANK] and deal with the [BLANK] that comes up. You have to learn how to [BLANK] those nerves. And you need to have the [BLANK] to take a moment to [BLANK] the thoughts, [BLANK] the answer, and then respond. But that's a skill [BLANK] too. The ability to just [BLANK] takes time to [BLANK].",blanks:["impromptu","on the spot","anxiety","manage","confidence","process","structure","in itself","pause","develop"]},
     dictation:"So speaking on behalf of all people who talk a lot and never give others a second to talk, the real secret is to treat Q&A like a skill — not your kryptonite — and develop a calm, confident approach.",
@@ -2490,7 +2495,7 @@ const DAYS = [
         {en:"If getting a quote is too complex or not even an option, potential customers are sure to leave your site.",zh:"如果获取报价的过程太复杂，甚至根本没有这个选项，潜在客户肯定会离开你的网站。"},
         {en:"An efficient quote system is one of the most powerful tools for converting interested visitors into paying clients.",zh:"高效的报价系统是将感兴趣的访客转化为付费客户的最有力工具之一。"}
       ]},
-    vocab:[{en:"quotation",zh:"报价单"},{en:"confirm",zh:"确认"},{en:"delivery",zh:"交付；送达"},{en:"expiration date",zh:"有效期；截止日期"},{en:"line item",zh:"单项明细"}],
+    vocab:[{en:"quotation",zh:"报价单",ex:"I'll send you a formal quotation by tomorrow."},{en:"confirm",zh:"确认",ex:"Please confirm the order details before we proceed."},{en:"delivery",zh:"交付；送达",ex:"We can arrange delivery within two weeks."},{en:"expiration date",zh:"有效期；截止日期",ex:"This quote is valid until the expiration date."},{en:"line item",zh:"单项明细",ex:"Each line item includes the unit price and quantity."},{en:"bulk discount",zh:"批量折扣",ex:"We offer a bulk discount for orders over 500 units."},{en:"lead time",zh:"备货/交货周期",ex:"Our standard lead time is 14 business days."}],
     translation:{zh:"这份报价的有效期只有七天，如果你需要调整条款，请尽快告诉我们。",en:"This quotation is valid for only seven days. If you need to adjust the terms, please let us know as soon as possible."},
     listening:{original:"You developed great products and services, launched a great website, drove valuable traffic to your site and built word of mouth buzz about your brand and implemented other marketing that's getting you noticed. But the question is, with all of that positive attention, are you making it easy enough for potential clients and customers to get a quote once they've decided that they're interested in what you have to offer? Consider a time when you researched an online service like car insurance, was the process of finding out what the service would cost simple and easy to understand? If it wasn't, you likely went to one of the other websites that popped up in your search. This is why you need an efficient system for providing a quote to potential customers. Because if getting a quote is too complex or even worse, not even an option, potential customers are sure to leave your site never to return.",text:"You developed great products and services, [BLANK] a great website, drove valuable traffic and built word of mouth [BLANK] about your brand and [BLANK] other marketing. But are you making it easy enough for [BLANK] clients to get a quote? Consider a time when you researched an online service like car [BLANK]. Was the process simple? If not, you likely went to another site that [BLANK] in your search. This is why you need an [BLANK] system for providing a quote. Because if getting a quote is too [BLANK] or not even an [BLANK], potential customers will leave your site and never return.",blanks:["launched","buzz","implemented","potential","insurance","popped up","efficient","complex","option"]},
     dictation:"But first, make sure that when potential customers land on your page, they can easily find a document to request your pricing — because a clear and efficient quote process is your strongest competitive advantage.",
@@ -2504,7 +2509,7 @@ const DAYS = [
         {en:"He learned that cutting to the chase, rather than making small talk, was the right approach with busy executives.",zh:"他意识到，与忙碌的高管沟通时，直奔主题而不是寒暄才是正确的方式。"},
         {en:"If you want to cut to the chase in writing, put your most important point in the first sentence.",zh:"如果你想在写作中直奔主题，把最重要的观点放在第一句话。"}
       ]},
-    vocab:[{en:"cut to the chase",zh:"直奔主题；别绕弯子"},{en:"small talk",zh:"寒暄；闲聊"},{en:"skip",zh:"跳过"},{en:"run out of time",zh:"时间不够；时间快用完"},{en:"right away",zh:"立刻；马上"}],
+    vocab:[{en:"cut to the chase",zh:"直奔主题；别绕弯子",ex:"Let's cut to the chase — what's your budget?"},{en:"small talk",zh:"寒暄；闲聊",ex:"A bit of small talk helps break the ice."},{en:"skip",zh:"跳过",ex:"Let's skip the intro and go straight to numbers."},{en:"run out of time",zh:"时间不够；时间快用完",ex:"We ran out of time before the last agenda item."},{en:"right away",zh:"立刻；马上",ex:"I'll get back to you right away."},{en:"get to the point",zh:"说重点",ex:"Please get to the point — we have ten minutes."},{en:"bottom line",zh:"核心要点；底线",ex:"The bottom line is we need to decide today."}],
     translation:{zh:"时间紧迫时，学会直奔主题是一项非常实用的职场技能，能帮你在繁忙的会议中快速传达最关键的信息。",en:"When time is short, learning to cut to the chase is a very practical workplace skill that helps you quickly communicate the most critical information in busy meetings."},
     listening:null,
     dictation:null,
@@ -2760,6 +2765,7 @@ function renderVocabPanel() {
       <div class="vocab-info">
         <div class="en">${v.en}</div>
         <div class="zh">${v.zh}</div>
+        ${v.ex ? `<div class="ex" title="${esc(v.ex)}">${esc(v.ex)}</div>` : ''}
       </div>
       <button class="vocab-play" data-text="${esc(v.en)}" data-idx="${i}" onclick="speakVocab(this.dataset.text,+this.dataset.idx)" title="朗读">🔊</button>
     </div>`).join('');
@@ -2813,12 +2819,18 @@ function renderOrderUI() {
   const sentences = d.levelBC.sentences;
 
   document.getElementById('order-target').innerHTML = orderUserSeq.map((idx,pos) => `
-    <div class="order-chip" data-pos="${pos}" onclick="removeFromOrder(${pos})">${sentences[idx].en.substring(0,60)}${sentences[idx].en.length>60?'…':''}</div>
+    <div class="order-chip">
+      <button class="chip-play" data-text="${esc(sentences[idx].en)}" onclick="event.stopPropagation();speakText(this.dataset.text,null)" title="朗读">🔊</button>
+      <span class="order-chip-text" onclick="removeFromOrder(${pos})">${sentences[idx].en.substring(0,55)}${sentences[idx].en.length>55?'…':''}</span>
+    </div>
   `).join('') || '<span style="color:#94a3b8;font-size:14px">点击下方句子添加到此处</span>';
 
   const remaining = orderShuffled.filter(i => !orderUserSeq.includes(i));
   document.getElementById('order-source').innerHTML = remaining.map(idx => `
-    <div class="order-chip source" onclick="addToOrder(${idx})">${sentences[idx].en.substring(0,60)}${sentences[idx].en.length>60?'…':''}</div>
+    <div class="order-chip source">
+      <button class="chip-play" data-text="${esc(sentences[idx].en)}" onclick="event.stopPropagation();speakText(this.dataset.text,null)" title="朗读">🔊</button>
+      <span class="order-chip-text" onclick="addToOrder(${idx})">${sentences[idx].en.substring(0,55)}${sentences[idx].en.length>55?'…':''}</span>
+    </div>
   `).join('');
 
   document.getElementById('order-result').innerHTML = '';
@@ -2832,6 +2844,24 @@ function addToOrder(idx) {
 function removeFromOrder(pos) {
   orderUserSeq.splice(pos, 1);
   renderOrderUI();
+}
+
+function speakOrderCorrect() {
+  const d = DAYS[currentDayIdx];
+  const correct = d.orderCorrect;
+  const sentences = d.levelBC.sentences;
+  const texts = correct.map(i => sentences[i].en);
+  const btn = document.getElementById('speak-order-btn');
+  if (btn) { btn.disabled = true; btn.textContent = '🔊 朗读中...'; }
+  let i = 0;
+  function next() {
+    if (i >= texts.length) {
+      if (btn) { btn.disabled = false; btn.textContent = '🔊 朗读正确段落'; }
+      return;
+    }
+    speakText(texts[i], null, () => { i++; setTimeout(next, 600); });
+  }
+  next();
 }
 
 function checkOrder() {
