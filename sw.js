@@ -3,7 +3,7 @@
  * 更新内容时记得把 CACHE_NAME 的版本号往上加一。
  */
 
-const CACHE_NAME = 'english-dashboard-v20';
+const CACHE_NAME = 'english-dashboard-v21';
 const URLS_TO_CACHE = [
   './',
   './index.html',
